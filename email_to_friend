@@ -1,0 +1,52 @@
+import smtplib
+import os
+from dotenv import load_dotenv
+
+print("Напиши свое имя")
+friend_name = input()
+
+load_dotenv()
+login = os.getenv('login')
+password = os.getenv('password')
+
+email_from = "mr.w1zard1@yandex.ru"
+email_to = "mr.w1zard1@yandex.ru"
+website = "Devman"
+my_name = "Сергей Мазанов"
+referal = "https://dvmn.org/profession-ref-program/rusich2/o65i5"
+letter = f"""\
+From: mr.w1zard1@yandex.ru
+To: mr.w1zard1@yandex.ru
+Subject: Войти в АйТи
+Content-Type: text/plain; charset="UTF-8";
+
+Привет, {friend_name}! {my_name} приглашает тебя на сайт {website}!
+
+{website} — это новая версия онлайн-курса по программированию. 
+Изучаем Python и не только. Решаем задачи. Получаем ревью от преподавателя. 
+
+Как будет проходить ваше обучение на {website}? 
+
+→ Попрактикуешься на реальных кейсах. 
+Задачи от тимлидов со стажем от 10 лет в программировании.
+→ Будешь учиться без стресса и бессонных ночей. 
+Задачи не «сгорят» и не уйдут к другому. Занимайся в удобное время и ровно столько, сколько можешь.
+→ Подготовишь крепкое резюме.
+Все проекты — они же решение наших задачек — можно разместить на твоём GitHub. Работодатели такое оценят.
+
+Регистрируйся → referal
+
+На курсы, которые еще не вышли, можно подписаться и получить уведомление о релизе сразу на имейл."""
+
+letter = letter.replace("referal", "https://dvmn.org/profession-ref-program/rusich2/o65i5/")
+letter = letter.encode("UTF-8")
+
+message = letter
+
+server = smtplib.SMTP_SSL('smtp.yandex.ru:465')
+server.login(login, password)
+server.sendmail(email_from, email_to, message)
+server.quit()
+
+print (letter)
+
