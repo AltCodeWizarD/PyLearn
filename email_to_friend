@@ -2,7 +2,7 @@ import smtplib
 import os
 from dotenv import load_dotenv
 
-print("Напиши свое имя")
+print("Напиши имя друга")
 friend_name = input()
 
 load_dotenv()
@@ -15,8 +15,8 @@ website = "Devman"
 my_name = "Сергей Мазанов"
 referal = "https://dvmn.org/profession-ref-program/rusich2/o65i5"
 letter = f"""\
-From: mr.w1zard1@yandex.ru
-To: mr.w1zard1@yandex.ru
+From: {email_from}
+To: {email_to}
 Subject: Войти в АйТи
 Content-Type: text/plain; charset="UTF-8";
 
