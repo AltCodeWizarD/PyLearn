@@ -1,0 +1,21 @@
+from PIL import Image
+
+print("Please input name of pic as 'NAME.format'")
+image = input()
+input_image = Image.open(image)
+
+rgb_pic = input_image.convert("RGB")
+red_ch, green_ch, blue_ch = rgb_pic.split()
+
+coordinates = (22, 22, red_ch.width, red_ch.height)
+red_ch_cropped = red_ch.crop(coordinates)
+coordinates = (0, 0, 490, 490)
+blue_ch_cropped = blue_ch.crop(coordinates)
+coordinates = (22, 22, green_ch.width, green_ch.height)
+green_ch_cropped = green_ch.crop(coordinates)
+
+
+new_image_cropped = Image.merge("RGB", (red_ch_cropped, green_ch_cropped, blue_ch_cropped))
+new_image_cropped.thumbnail((80, 80))
+new_image_cropped.save("YourNewPic.jpg")
+print("New pic has been saved!")
